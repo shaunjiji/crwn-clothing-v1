@@ -29,3 +29,13 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+export const db = getFireStore();
+
+export const createUserDocumentFromAuth = async (userAuth) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  const userSnapshot = await getDoc(userDocRef);
+
+  console.log(userSnapshot);
+};
