@@ -1,4 +1,4 @@
-import "./categry-preview.styles.scss";
+import "./category-preview.styles.scss";
 
 import ProductCard from "../product-card/product-card.component";
 
