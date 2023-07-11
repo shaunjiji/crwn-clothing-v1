@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useReducer } from "react";
 
 import {
   onAuthStateChangedListener,
@@ -10,8 +10,29 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
+
+
+const userReducer = (state, action) => {
+  const {type, payload} = action;
+
+  switch(type){
+    case 'SET_CURRENT_USER':
+      return {
+        currentUser: payload;
+      }
+    case 'increment':
+      return {
+        
+      }
+    default: 
+      throw new Error(`Unhandled type ${type} in userReducer`);
+  }
+}
+
+
+
 export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  // const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
@@ -27,3 +48,13 @@ export const UserProvider = ({ children }) => {
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
+
+/*
+
+const userReducer = () => {
+  return {
+    currentUser: 
+  }
+}
+
+*/
